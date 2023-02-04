@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ubuntu:20.04
+FROM --platform=linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x ubuntu:20.04
 
 RUN apt-get update && \
     apt-get install -y bash curl file git unzip xz-utils zip libglu1-mesa && \
@@ -14,7 +14,7 @@ ARG flutterVersion=stable
 
 ADD https://api.github.com/repos/flutter/flutter/compare/${flutterVersion}...${flutterVersion} /dev/null
 
-RUN git clone https://github.com/flutter/flutter.git -b ${flutterVersion} flutter-sdk
+RUN git clone https://github.com/flutter/flutter.git -b 3.7.1 flutter-sdk
 
 RUN flutter-sdk/bin/flutter precache
 
